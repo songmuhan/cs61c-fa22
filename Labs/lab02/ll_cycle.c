@@ -4,7 +4,7 @@
 int ll_has_cycle(node *head) {
    node *tortoise = head;
    node *hare = head;                                                                 
-   while (hare != NULL) {
+   while (hare != NULL && hare->next != NULL) {
        tortoise = tortoise->next;
        hare = hare->next->next;
        if (tortoise == hare) {
