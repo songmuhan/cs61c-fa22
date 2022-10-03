@@ -27,7 +27,15 @@ main:
 # The return value should be stored in a0
 factorial:
     # YOUR CODE HERE
-
+    addi t0, x0, 1 # set t0 = 1
+    addi t1, x0, 1 # set t1 = 1
+loop:    
+    blt  a0, t0, end # if a0 < t0, jump to end 
+    mul  t1, t0, t1  # t1 = t0 * t1
+    addi t0, t0, 1   # t0 = t0 + 1
+    j loop
     # This is how you return from a function. You'll learn more about this later.
     # This should be the last line in your program.
+end:
+    mv a0, t1
     jr ra
