@@ -98,38 +98,122 @@ bool test_is_vowel() {
 
 bool test_is_tail() {
   // TODO: Implement this function.
+  printf("\ttest_is_tail ...\n");
+
+  char str[] = "wasd";
+  for(int i =0; i < strlen(str);i++){
+    if(!is_tail(str[i])){
+//        printf("\t \t test_is_tail: %c %d",str[i],is_tail(str[i]));
+        return false;
+    }
+  }
+  char str1[] = "qer"; // other code.
+  for(int i =0; i < strlen(str1);i++){
+    if(is_tail(str1[i])){
+        return false;
+    }
+  }
+
+  if(is_tail('\0')){
+    return false;
+  }
   return true;
 }
 
 bool test_is_head() {
   // TODO: Implement this function.
-  return true;
+    printf("\ttest_is_head ...\n");
+    char str[] = "WASDx";
+    for(int i =0; i < strlen(str);i++){
+        if(!is_head(str[i])){
+    //        printf("\t \t test_is_tail: %c %d",str[i],is_tail(str[i]));
+            return false;
+        }
+    }
+    char str1[] = "qerwasd"; // other code.
+    for(int i =0; i < strlen(str1);i++){
+        if(is_head(str1[i])){
+            return false;
+        }
+    }
+    
+    if(is_head('\0')){
+        return false;
+    }
+    return true;
 }
 
 bool test_is_snake() {
-  // TODO: Implement this function.
-  return true;
+    printf("\ttest_is_snake ...\n");
+    char str[] = "wasd^<v>WASDx";
+    for(int i =0; i < strlen(str);i++){
+        if(!is_snake(str[i])){
+    //        printf("\t \t test_is_tail: %c %d",str[i],is_tail(str[i]));
+            return false;
+        }
+    }
+    char str1[] = "qernklj"; // other code.
+    for(int i =0; i < strlen(str1);i++){
+        if(is_snake(str1[i])){
+            return false;
+        }
+    }
+    
+    if(is_snake('\0')){
+        return false;
+    }
+    return true;
 }
 
 bool test_body_to_tail() {
-  // TODO: Implement this function.
+    printf("\ttest_body_to_tail ...\n");
+    char str[] = "^<v>";
+    char str1[] = "wasd";
+    for(int i =0; i < strlen(str);i++){
+        assert_equals_char("test_body_to_tail",body_to_tail(str[i]),str1[i]);
+    }
   return true;
 }
 
 bool test_head_to_body() {
-  // TODO: Implement this function.
+    printf("\ttest_head_to_body ...\n");
+    char str[] = "WASD";
+    char str1[] = "^<v>";
+    for(int i =0; i < strlen(str);i++){
+        assert_equals_char("test_body_to_tail",head_to_body(str[i]),str1[i]);
+    }
   return true;
 }
 
 bool test_get_next_x() {
   // TODO: Implement this function.
+  printf("\ttest_get_next_x ...\n");
+  char up[] = "^wW";
+  for(int i =0; i < strlen(up);i++){
+    assert_equals_unsigned_int("test_get_next_x",get_next_row(5,up[i]),4u);
+  }
+  char down[] = "vsS";
+  for(int i =0; i < strlen(down);i++){
+    assert_equals_unsigned_int("test_get_next_x",get_next_row(0,down[i]),1u);
+  }
   return true;
 }
 
 bool test_get_next_y() {
   // TODO: Implement this function.
+  printf("\ttest_get_next_y ...\n");
+  char left[] = "<aA";
+  for(int i =0; i < strlen(left);i++){
+    assert_equals_unsigned_int("test_get_next_y",get_next_col(5,left[i]),4u);
+  }
+  char right[] = ">dD";
+  for(int i =0; i < strlen(right);i++){
+    assert_equals_unsigned_int("test_get_next_x",get_next_col(0,right[i]),1u);
+  }
   return true;
 }
+
+
 
 bool test_customs() {
   if (!test_greater_than_forty_two()) {
