@@ -25,16 +25,61 @@
 write_matrix:
 
     # Prologue
+    addi sp, sp, -28
+    sw   ra, 0(sp)
+    sw   a0, 4(sp)
+    sw   a1, 8(sp)
+    sw   a2, 12(sp)
+    sw   a3, 16(sp)
+    sw   s0, 20(sp)
+    sw   s1, 24(sp)
+    mul  s1, a2, a3           # number of elements to write, set to s1
+    li   t0, 1                # write permisson
+    mv   a1, t0               # a1 = 1
+    jal  ra, fopen
+    li   t0, -1
+    beq  a0, t0, fopen_error  #fopen fail
+    mv   s0, a0               # s0 = file descriptor
+#   mv   a0, s0               
+    addi  a1, sp, 12
+    li    a2, 2
+    li    a3, 4
+    jal   ra, fwrite
+    li    t0, 2
+    bne   a0, t0, fwrite_error
 
-
-
-
-
-
-
-
+    mv   a0, s0               
+    lw   a1, 8(sp)            # pointer of matrix in memory
+    mv   a2, s1               # number of elements
+    li   a3, 4                # each elements is 4 bytes
+    jal  ra, fwrite
+    bne  a0, s1, fwrite_error # wirte number different from expectation
+    
+    mv   a0, s0
+    jal  ra, fclose
+    li   t0, -1
+    beq  a0, t0, fclose_error
 
     # Epilogue
+    lw   ra, 0(sp)
+    lw   a0, 4(sp)
+    lw   a1, 8(sp)
+    lw   a2, 12(sp)
+    lw   a3, 16(sp)
+    lw   s0, 20(sp)
+    lw   s1, 24(sp)
+    addi sp, sp, 28
 
 
     jr ra
+fopen_error:
+    li   a0, 27
+    j exit
+
+fwrite_error:
+    li   a0, 30
+    j exit
+
+fclose_error:
+    li   a0, 28
+    j exit
