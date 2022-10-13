@@ -1,4 +1,4 @@
-addi s0, x0, 1919
+ addi s0, x0, 1919
 lui  s0, 703710
 
 lui  s0, 0

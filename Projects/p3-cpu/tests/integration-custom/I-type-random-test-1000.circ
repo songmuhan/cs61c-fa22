@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project source="3.8.0-61c.07e32fb" version="1.0">
+  This file is intended to be loaded by Logisim-evolution v3.8.0-61c.07e32fb(https://github.com/61c-teach/logisim-evolution).
+
+  <lib desc="#Wiring" name="0">
+    <tool name="Splitter">
+      <a name="appear" val="center"/>
+      <a name="fanout" val="4"/>
+      <a name="incoming" val="4"/>
+    </tool>
+    <tool name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="north"/>
+    </tool>
+    <tool name="Probe">
+      <a name="appearance" val="classic"/>
+      <a name="radix" val="16"/>
+    </tool>
+    <tool name="Tunnel">
+      <a name="width" val="2"/>
+    </tool>
+    <tool name="Pull Resistor">
+      <a name="facing" val="north"/>
+    </tool>
+    <tool name="Clock">
+      <a name="facing" val="north"/>
+    </tool>
+    <tool name="Constant">
+      <a name="value" val="0xff"/>
+      <a name="width" val="8"/>
+    </tool>
+    <tool name="Bit Extender">
+      <a name="in_width" val="32"/>
+      <a name="out_width" val="8"/>
+    </tool>
+  </lib>
+  <lib desc="#Gates" name="1">
+    <tool name="NOT Gate">
+      <a name="facing" val="south"/>
+    </tool>
+    <tool name="Buffer">
+      <a name="width" val="3"/>
+    </tool>
+    <tool name="AND Gate">
+      <a name="width" val="16"/>
+    </tool>
+    <tool name="NAND Gate">
+      <a name="size" val="30"/>
+    </tool>
+    <tool name="XNOR Gate">
+      <a name="size" val="30"/>
+    </tool>
+    <tool name="Odd Parity">
+      <a name="facing" val="south"/>
+      <a name="inputs" val="3"/>
+    </tool>
+    <tool name="Controlled Inverter">
+      <a name="size" val="20"/>
+    </tool>
+  </lib>
+  <lib desc="#Plexers" name="2">
+    <tool name="Decoder">
+      <a name="enable" val="false"/>
+    </tool>
+    <tool name="BitSelector">
+      <a name="group" val="8"/>
+      <a name="width" val="32"/>
+    </tool>
+  </lib>
+  <lib desc="#Arithmetic" name="3">
+    <tool name="Adder">
+      <a name="width" val="16"/>
+    </tool>
+    <tool name="Subtractor">
+      <a name="width" val="16"/>
+    </tool>
+    <tool name="Multiplier">
+      <a name="width" val="1"/>
+    </tool>
+    <tool name="Divider">
+      <a name="width" val="16"/>
+    </tool>
+    <tool name="Negator">
+      <a name="width" val="1"/>
+    </tool>
+    <tool name="Comparator">
+      <a name="width" val="16"/>
+    </tool>
+    <tool name="Shifter">
+      <a name="width" val="16"/>
+    </tool>
+  </lib>
+  <lib desc="#Memory" name="4"/>
+  <lib desc="#Base" name="5">
+    <tool name="Text Tool">
+      <a name="font" val="SansSerif plain 12"/>
+    </tool>
+  </lib>
+  <lib desc="file#../../harnesses/cpu-harness.circ" name="6"/>
+  <main name="run_main"/>
+  <options>
+    <a name="gateUndefined" val="ignore"/>
+    <a name="simlimit" val="1000"/>
+    <a name="simrand" val="0"/>
+  </options>
+  <mappings>
+    <tool lib="5" map="Button2" name="Menu Tool"/>
+    <tool lib="5" map="Button3" name="Menu Tool"/>
+    <tool lib="5" map="Ctrl Button1" name="Menu Tool"/>
+  </mappings>
+  <toolbar>
+    <tool lib="5" name="Poke Tool"/>
+    <tool lib="5" name="Edit Tool"/>
+    <tool lib="5" name="Wiring Tool"/>
+    <tool lib="5" name="Text Tool">
+      <a name="font" val="SansSerif plain 12"/>
+    </tool>
+    <sep/>
+    <tool lib="0" name="Pin"/>
+    <tool lib="0" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+    </tool>
+    <sep/>
+    <tool lib="1" name="NOT Gate"/>
+    <tool lib="1" name="AND Gate"/>
+    <tool lib="1" name="OR Gate"/>
+    <tool lib="1" name="XOR Gate"/>
+    <tool lib="1" name="NAND Gate"/>
+    <tool lib="1" name="NOR Gate"/>
+    <sep/>
+    <tool lib="4" name="D Flip-Flop"/>
+    <tool lib="4" name="Register"/>
+  </toolbar>
+  <circuit name="run_main">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="run_main"/>
+    <a name="clabelfont" val="SansSerif plain 12"/>
+    <a name="simulationFrequency" val="1.0"/>
+    <comp lib="0" loc="(1000,110)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="south"/>
+      <a name="label" val="a0"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(1070,760)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="RequestedInstruction"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(1130,760)" name="Probe">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="radix" val="16"/>
+    </comp>
+    <comp lib="0" loc="(1140,660)" name="Tunnel">
+      <a name="label" val="Instruction"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(1310,790)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="clk"/>
+    </comp>
+    <comp lib="0" loc="(1580,820)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="TimeStep"/>
+      <a name="output" val="true"/>
+      <a name="width" val="16"/>
+    </comp>
+    <comp lib="0" loc="(1630,980)" name="Constant">
+      <a name="value" val="0x3ea"/>
+      <a name="width" val="16"/>
+    </comp>
+    <comp lib="0" loc="(1750,970)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="halt"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(190,300)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="clk"/>
+    </comp>
+    <comp lib="0" loc="(200,860)" name="Tunnel">
+      <a name="facing" val="south"/>
+      <a name="label" val="clk"/>
+    </comp>
+    <comp lib="0" loc="(200,890)" name="Clock">
+      <a name="facing" val="north"/>
+    </comp>
+    <comp lib="0" loc="(250,270)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="Instruction"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(370,110)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="south"/>
+      <a name="label" val="ra"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(460,110)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="south"/>
+      <a name="label" val="sp"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(470,710)" name="Probe">
+      <a name="appearance" val="classic"/>
+      <a name="radix" val="16"/>
+    </comp>
+    <comp lib="0" loc="(480,610)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="ProgramCounter"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(500,610)" name="Splitter">
+      <a name="appear" val="center"/>
+      <a name="bit0" val="none"/>
+      <a name="bit1" val="none"/>
+      <a name="bit10" val="0"/>
+      <a name="bit11" val="0"/>
+      <a name="bit12" val="0"/>
+      <a name="bit13" val="0"/>
+      <a name="bit14" val="0"/>
+      <a name="bit15" val="0"/>
+      <a name="bit16" val="none"/>
+      <a name="bit17" val="none"/>
+      <a name="bit18" val="none"/>
+      <a name="bit19" val="none"/>
+      <a name="bit2" val="0"/>
+      <a name="bit20" val="none"/>
+      <a name="bit21" val="none"/>
+      <a name="bit22" val="none"/>
+      <a name="bit23" val="none"/>
+      <a name="bit24" val="none"/>
+      <a name="bit25" val="none"/>
+      <a name="bit26" val="none"/>
+      <a name="bit27" val="none"/>
+      <a name="bit28" val="none"/>
+      <a name="bit29" val="none"/>
+      <a name="bit3" val="0"/>
+      <a name="bit30" val="none"/>
+      <a name="bit31" val="none"/>
+      <a name="bit4" val="0"/>
+      <a name="bit5" val="0"/>
+      <a name="bit6" val="0"/>
+      <a name="bit7" val="0"/>
+      <a name="bit8" val="0"/>
+      <a name="bit9" val="0"/>
+      <a name="fanout" val="1"/>
+      <a name="incoming" val="32"/>
+    </comp>
+    <comp lib="0" loc="(520,710)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="RequestedAddress"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(550,110)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="south"/>
+      <a name="label" val="t0"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(550,250)" name="Tunnel">
+      <a name="facing" val="south"/>
+      <a name="label" val="ProgramCounter"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(640,110)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="south"/>
+      <a name="label" val="t1"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(730,110)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="south"/>
+      <a name="label" val="t2"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(820,110)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="south"/>
+      <a name="label" val="s0"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(910,110)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="south"/>
+      <a name="label" val="s1"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="3" loc="(1710,970)" name="Comparator">
+      <a name="width" val="16"/>
+    </comp>
+    <comp lib="4" loc="(1340,710)" name="Counter">
+      <a name="appearance" val="logisim_evolution"/>
+      <a name="max" val="0xffff"/>
+      <a name="width" val="16"/>
+    </comp>
+    <comp lib="4" loc="(660,600)" name="ROM">
+      <a name="addrWidth" val="14"/>
+      <a name="appearance" val="logisim_evolution"/>
+      <a name="contents">addr/data: 14 32
+8e657293 b53f393 9f710413 bfb46093 af012293 909313 5214e313 34152093 a2438313 145293 1e49413 1b45513 a7530093 4170d493 26c0a393 7b548393 8944a093 81d4f313 49054393 98756113 849113 e11413 7e94c413 41a3d393 9a830113 4f04e293 40115393 7cf34393 1655413 f193a493 3642e493 103d413 bc728393 1431413 8c84e293 98417313 c39293 7e73a413 449093 aad2c293 2b28413 29e50393 de737513 37612113 9c43f413 4162d413 441413 18712293 1a3d313 4b248293 69c47093 8180a313 72d413 30948393 a4f54513 c9908493 8a64a393 d242f393 41745493 1637393 4190d413 40a3d493 1523e393 a45313 a0d513 be248413 40835313 d5a48313 4640c493 46e38313 75c36093 28a4e493 3fc08093 ad634413 d4957493 b2a28313 7f146113 89657113 40a35093 609293 f3a32113 82632093 a574f113 40840293 dfb0a413 b45393 fec12293 1241413 40135093 539093 4080d293 645413 4064d413 1bd40093 4c016113 8c22f293 1be4e113 e3f4c113 72110393 d6e12313 1239493 7060c113 2663a513 35854513 5f40093 b6b17413 f11413 e7150393 c49293 b2944493 67544413 209393 c4c3e513 1262e493 1aa56413 41c35113 47732113 1411493 4ca14293 ac28113 22a56113 77647313 32838393 183a493 1251413 75d32313 d7642393 1f45393 c4140293 e1030293 1229493 95356393 4f940493 a04c393 cfa16113 1535293 715393 c4d393 10d2a293 34852313 ad740113 1e55093 6f20f393 67b32493 41155293 eb042093 a663c393 9360c413 8732113 4150d093 e9934293 ab70c493 95914293 40435393 611093 829093 40b4d093 211293 73257313 61a36493 4134d393 98b10293 4012d093 cff4a113 e11513 3394a113 b3634493 f6b57293 b29113 42546113 3be37493 739393 629313 41e3f293 95a10393 d4d513 dec4c393 2ba42513 40a2d113 9bc42113 40755113 69544093 651393 183d093 4383c313 1d35413 25447093 68057513 9bd46113 71f3e313 8ad44093 b29293 1229113 4142d513 1982a393 72d313 2ee52093 1b45393 c0d513 339393 e8237393 6d62a493 53f42313 4644a513 1929313 2a10393 9542f513 2aa46413 f41513 1809313 52f52493 4eb2f293 311093 d3d293 6f00c293 1d2d293 aad2a413 ede4f093 a39093 ded36413 b6840413 f790f413 ac73c093 9b308313 84d393 fb946393 41935293 4110d493 1b3d513 183d093 241413 1441393 13f3e113 76157493 4f63e313 40435113 4072d093 e8447513 1f39493 39754113 adf34513 351513 5aa52513 b2c3c413 75a56513 df32f313 5d248093 ee917493 e4d413 41930513 cd83a093 d5210513 f2d093 5b30a513 845093 5520a493 89148113 1d39393 71f4e113 4024d093 f942f493 5553a113 509293 41055413 151093 c5b4f393 b3630393 4162d393 ee308113 15837113 ab32f293 64c2e493 1a15313 4d717093 eff2e413 1f2d513 adb2f313 945113 fc942293 41e15413 6e008393 d7044093 23756293 c904f093 ef62e093 9b436493 d4136393 132d513 c6e40093 d6e4a313 f4d493 beb0e393 d2e2c113 1539513 4003d413 4f547513 4173d493 bdf0e093 bc50a413 ac216413 9dc42393 1360a293 d480e113 bc34a293 26c34493 80d093 40735293 afd50293 d8f28113 6b2f113 40c45293 1809513 4094d513 f6c0a093 b0b34113 67554413 40f4d313 239393 a9f2f293 21d16113 239313 64a10513 12d093 41035293 74238093 d7c42393 12450313 4c134413 8200c493 e55093 b7b3e393 8b13c393 91f46093 4113d413 33c4f413 14d413 7a042393 80a40113 b122f093 4df32113 62d28393 41e45313 81a56513 645093 79a2e113 41645393 8c33f093 32756113 97146093 d41413 92737493 4b62f293 b830f313 180d093 1b31093 1b4d493 7e72e093 a7f44093 24647313 60d413 e610f413 1af0f393 9ed4a413 13c36313 c630313 41f2d413 62750493 41235493 8e63f513 1d834513 4dd2f113 4124d393 d45413 fd930513 849293 f952f493 da94e313 12d413 9552293 14948493 409313 4020a393 b31493 d31313 23a28313 1335313 35308393 d7917093 80332113 a0c08513 41455513 211093 41345093 1945413 41c4d093 47840413 1615313 41735093 1909513 46540293 40d3d113 951413 4133d413 1235093 955493 79254393 41737093 4172d313 4a528493 2a628393 87f0f493 1b49113 bbb40293 a55413 41d15313 60e47293 9bd0a513 64e37313 1632293 cf62a513 c43a413 1e538413 18130393 1249513 65236093 7ad46413 58536493 57e36513 1422a493 1c2d493 c4d113 41235293 100d313 3fd37393 4193d093 e480a313 6d217293 40b45093 8552e493 d7032493 4f808393 31517513 66247093 a7d48293 25936293 4074d113 61512293 40715293 60c14413 1ee40413 a642f113 6510f093 6920c393 451313 3c23c513 ab834413 3553f413 149113 cb850113 539493 d9e36493 f6d32393 f7436313 45732393 4140d493 46748413 1139113 263e413 1439313 9e92e093 67028413 eb43e513 17054513 fdb48493 911513 87652313 16b3a393 e2d37393 43648393 fd04c513 1435293 12b4a393 1035493 24137493 349493 4e72e293 4243f113 1f49113 a510a513 4180d493 78956093 439493 daa47313 5d730113 61c0c513 5873e113 8e72c493 4772a513 f41113 89147393 40d45493 5440f093 1f43f413 41a35113 331413 67b37513 8404e413 1c51293 931393 e252c393 e943e093 43534493 f1828393 7790f313 1741393 f0b42493 c31293 7bf4a113 41f55493 f670c293 98550093 53357093 a8a2a293 1cf2c513 3652f113 1ea34393 4670a313 1534293 415293 64740093 5484c313 87334513 1031393 96f52513 1703a113 32b57113 4073d113 67540313 445293 e23c293 b7a2e313 349113 72b46513 4334c313 6ad0f313 f9350513 134d293 1a45093 1a12f313 14448293 3893a513 d193e313 b6d37293 1e3d493 239093 fd40e313 f262a293 1710f413 1831393 e35413 40e2d293 40235513 1b55293 cdb4a393 ad3c413 f3750393 4134d413 40235293 6b50e393 a55413 41155313 6610e393 b7757413 5f408513 8b937413 7c08393 aaa36313 140d313 1a45493 22340493 e4c4f293 91142493 58b2c393 9d337293 6e62c493 dc03e513 e3d113 63e0c413 114d313 a660f493 4144d493 ded42413 4012d413 e4d093 79c4e113 c2c3f413 9ae3e113 38f4f413 1139413 6cf0f113 81438293 c234293 f31093 323f313 41e2d313 40b55513 23616513 d8936513 9a038313 115513 1c0d493 71d3e393 97934293 74b28293 40e15313 41035093 ec83e313 eb247513 3c708113 79d40413 1c15313 9fb4e313 635513 42d093 72d513 ff047393 e7316113 e0314313 7bc46113 48e42293 41a2d313 a1310293 51152313 8050e493 8e550393 15030513 5517513 f8e4e113 40355413 41615313 41215313 55393 6e14f413 7ed2f513 a0314093 c610c093 d3a48313 1954a293 41c3d093 5ae0a493 c6c3e293 49657293 5bf3f513 41435113 470f413 cfd17413 4042d093 1831313 a952f493 7bf0a413 ba928413 c4056093 8df2a293 711513 76036293 41955393 47410493 e4d3a513 6d14093 4fb36393 64d113 164d513 7982f493 4140d393 135393 88c17513 e290a293 72a0f113 b8630313 37a0f413 c6556113 4e150513 1455093 1e39393 f9437493 a9e32093 1d4d313 7e12c513 4022d313 9ba54413 5650a413 a39413 20036113 1534f093 1851493 81548393 41340313 f464a293 110d293 85917493 b4e2c093 9b93a393 c3d4a393 4183d413 37d54113 1a41113 ebd3f293 3d32f093 54e4e413 4060d293 16757113 41555093 a0d413 76e36293 20a46393 24617493 4c84e293 1a29513 1c09293 a2f0c113 dc02c313 4024d093 43c56393 235493 41a35313 53110493 6c517113 bb254493 154d413 20530093 1f41313 fcd12093 1f29113 429113 e112e313 41d15113 42b50093 1d09113 4ce44513 4413e413 2d413 faa56413 309393 3d513 da532493 d1217513 bd23f313 b5e42313 ea556513 4b33c093 4124d113 76946313 c35393 93a3f513 e3128393 83d513 1629513 2ba2a493 94d113 e2d093 1245413 4163d413 551293 56454113 8ca46393 b7647413 e49393 98028513 d4a4e513 35d28393 fcc0a413 7194e293 d45293 e657493 4020c093 144d513 6ed30513 d09093 1841113 9224c393 4132d093 eb02e313 22332393 9e630113 40055313 1b49413 b8e14413 122d313 a4d293 1c15313 1e09393 59e42113 735393 ed216313 ea93e313 445413 fbf0f513 1394c313 6ba50493 38748113 c3e4a513 4c73e513 1f03c513 d9416513 d4144313 31f36313 46a54513 10d293 4c157413 c5c12493 ee940513 231313 6dd2c293 64e4e313 13f40413 1b39293 d2310493 7f54a093 cd83c313 bde48293 c8732113 1609293 4173d293 1f35293 9774f393 69b0e093 6d84e093 1615113 42d513 49442293 41f35493 41345313 915293 8bf3a493 a50c493 4452f293 1509513 4e752413 43d093 40e3d293 629393 635493 7a53c493 355113 6442e113 61f08513 61037313 4130d113 ddf52393 53a2a513 f2632413 551413 ca316393 b7c14113 1a29293 839313 95330413 1e45093 2434513 15f30513 f2d493 f3008293 644a293 69812113 4113d113 e3d093 4c534293 64d0f513 1835393 757113 329513 2d837093 40635493 64e34113 e922e313 635413 41a35313 6aa28313 1e41113 40835293 b34c413 ceb32113 a9a12313 d2e38493 68750493 1215513 aac3a393 40f4d493 40215493 1431093 1a15513 7a250413 40345493 47336513 b31093 1e09393 45b2f493 40856293 1b35513 1bd3c413 173d093 dd852493 8ad4e113 1972a313 915513 911313 1c35413 50452393 4184d313 8a4a093 99a3f113 a0d413 41f2d313 81312413 e4856313 29f32113 d6852413 e753e113 529093 1884a493 f8a4c093 3ee4a413 ee946493 5f0f493 40b55093 c35113 4e72a093 f49413 59f34493 50044513 d9247293 6b14e313 a914f313 d7b44113 85514293 150d393 93f40093 94714313 41e45293 b984f393 ace3f393 41254493 7e12a393 b8550093 54d113 7e30c293 cb02e493 54e44393 849093 e0842293 b11313 849093 7bf0a113 1a45393 8f554493 609513 d0c0c293 43c52493 34a36393 aec50293 ef537293 1031093 81c52293 4033d093 4094d513 c1e37393 1f4d113 a4936513 1d15313 8b0a293 1949493 7c63e093 135393 102d293 4083d113 4af16093 7114e113 c4d413 5748313 64232393 9ee48093 f7b52293 123d293 92d393 53546093 eb410393 b1612393 1e0d413 f24c113 1e41113 17b2f293 2384c293 9d3a113 f3744313 4b2e513 40815393 4150d413 1c55113 60e17113 89e28493
+</a>
+      <a name="dataWidth" val="32"/>
+    </comp>
+    <comp lib="5" loc="(1541,697)" name="Text">
+      <a name="font" val="SansSerif plain 16"/>
+      <a name="text" val="Halts Execution After Constant # of Clock Cycles"/>
+    </comp>
+    <comp lib="5" loc="(1614,1006)" name="Text">
+      <a name="font" val="SansSerif plain 12"/>
+      <a name="text" val="Constant"/>
+    </comp>
+    <comp lib="5" loc="(787,583)" name="Text">
+      <a name="font" val="SansSerif plain 24"/>
+      <a name="text" val="Instruction Memory"/>
+    </comp>
+    <comp lib="6" loc="(530,270)" name="cpu_harness"/>
+    <wire from="(1000,110)" to="(1000,170)"/>
+    <wire from="(1070,760)" to="(1110,760)"/>
+    <wire from="(1110,660)" to="(1110,760)"/>
+    <wire from="(1110,660)" to="(1140,660)"/>
+    <wire from="(1110,760)" to="(1130,760)"/>
+    <wire from="(1310,790)" to="(1340,790)"/>
+    <wire from="(1540,820)" to="(1560,820)"/>
+    <wire from="(1560,820)" to="(1560,890)"/>
+    <wire from="(1560,820)" to="(1580,820)"/>
+    <wire from="(1560,890)" to="(1650,890)"/>
+    <wire from="(1630,980)" to="(1670,980)"/>
+    <wire from="(1650,890)" to="(1650,960)"/>
+    <wire from="(1650,960)" to="(1670,960)"/>
+    <wire from="(1710,970)" to="(1750,970)"/>
+    <wire from="(190,300)" to="(260,300)"/>
+    <wire from="(200,860)" to="(200,890)"/>
+    <wire from="(250,270)" to="(310,270)"/>
+    <wire from="(260,290)" to="(260,300)"/>
+    <wire from="(260,290)" to="(310,290)"/>
+    <wire from="(370,110)" to="(370,170)"/>
+    <wire from="(370,170)" to="(630,170)"/>
+    <wire from="(460,110)" to="(460,160)"/>
+    <wire from="(460,160)" to="(660,160)"/>
+    <wire from="(470,710)" to="(490,710)"/>
+    <wire from="(480,610)" to="(490,610)"/>
+    <wire from="(490,610)" to="(490,710)"/>
+    <wire from="(490,610)" to="(500,610)"/>
+    <wire from="(490,710)" to="(520,710)"/>
+    <wire from="(520,610)" to="(660,610)"/>
+    <wire from="(530,270)" to="(550,270)"/>
+    <wire from="(530,290)" to="(630,290)"/>
+    <wire from="(530,310)" to="(660,310)"/>
+    <wire from="(530,330)" to="(690,330)"/>
+    <wire from="(530,350)" to="(720,350)"/>
+    <wire from="(530,370)" to="(750,370)"/>
+    <wire from="(530,390)" to="(780,390)"/>
+    <wire from="(530,410)" to="(810,410)"/>
+    <wire from="(530,430)" to="(840,430)"/>
+    <wire from="(550,110)" to="(550,150)"/>
+    <wire from="(550,150)" to="(690,150)"/>
+    <wire from="(550,250)" to="(550,270)"/>
+    <wire from="(630,170)" to="(630,290)"/>
+    <wire from="(640,110)" to="(640,140)"/>
+    <wire from="(640,140)" to="(720,140)"/>
+    <wire from="(660,160)" to="(660,310)"/>
+    <wire from="(690,150)" to="(690,330)"/>
+    <wire from="(720,140)" to="(720,350)"/>
+    <wire from="(730,110)" to="(730,130)"/>
+    <wire from="(730,130)" to="(750,130)"/>
+    <wire from="(750,130)" to="(750,370)"/>
+    <wire from="(780,140)" to="(780,390)"/>
+    <wire from="(780,140)" to="(820,140)"/>
+    <wire from="(810,150)" to="(810,410)"/>
+    <wire from="(810,150)" to="(910,150)"/>
+    <wire from="(820,110)" to="(820,140)"/>
+    <wire from="(840,170)" to="(1000,170)"/>
+    <wire from="(840,170)" to="(840,430)"/>
+    <wire from="(900,660)" to="(1110,660)"/>
+    <wire from="(910,110)" to="(910,150)"/>
+  </circuit>
+</project>
