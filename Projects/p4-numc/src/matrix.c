@@ -49,6 +49,15 @@ void rand_matrix(matrix *result, unsigned int seed, double low, double high) {
  */
 double get(matrix *mat, int row, int col) {
     // Task 1.1 TODO
+   // printf("get\n");
+    if(mat == NULL){
+        printf("\t get mat == NULL\n");
+        exit(-1);
+    }
+    int pos = row * mat->cols + col;
+    return mat->data[pos];
+    
+
 }
 
 /*
@@ -57,6 +66,15 @@ double get(matrix *mat, int row, int col) {
  */
 void set(matrix *mat, int row, int col, double val) {
     // Task 1.1 TODO
+ //   printf("\t\t  -------  set  ------- \n");
+    if(mat == NULL){
+        return;
+    }
+    int pos = row * mat->cols + col;
+  //  printf("\t\t\t\t pos: %d\n",pos);
+    mat->data[pos] = val;
+    
+    
 }
 
 /*
@@ -79,6 +97,29 @@ int allocate_matrix(matrix **mat, int rows, int cols) {
     // 6. Set the `ref_cnt` field to 1.
     // 7. Store the address of the allocated matrix struct at the location `mat` is pointing at.
     // 8. Return 0 upon success.
+ //   printf("\nallocate\n");
+    if(rows <= 0 || cols <=0 ){
+        return -1;
+    }
+    matrix * tmp = (matrix *)malloc(sizeof(matrix));
+    if(tmp == NULL){
+        return -2;
+    }
+    tmp->data = (double *) malloc(sizeof(double) * rows * cols);
+    if(tmp->data == NULL){
+        return -2;
+    }
+    for(int i = 0; i < rows * cols; i++){
+        tmp->data[i] = 0.0;
+    }
+    tmp->cols = cols;
+    tmp->rows = rows;
+    tmp->parent = NULL;
+    tmp->ref_cnt = 1;
+//    printf("alloc: tmp points to %p",tmp);
+    *mat = tmp;
+    return 0;
+
 }
 
 /*
@@ -92,6 +133,26 @@ void deallocate_matrix(matrix *mat) {
     // 1. If the matrix pointer `mat` is NULL, return.
     // 2. If `mat` has no parent: decrement its `ref_cnt` field by 1. If the `ref_cnt` field becomes 0, then free `mat` and its `data` field.
     // 3. Otherwise, recursively call `deallocate_matrix` on `mat`'s parent, then free `mat`.
+  //  printf("deallocate\n");
+    
+    if(mat == NULL){
+        return ;
+    }
+    if(mat->parent == NULL){
+        mat->ref_cnt --;
+        if(mat->ref_cnt == 0){
+            free(mat->data);
+            free(mat);
+            return;
+        }
+    }else{
+        deallocate_matrix(mat->parent);
+        free(mat);
+        return;
+    }
+    
+    
+
 }
 
 /*
@@ -117,6 +178,22 @@ int allocate_matrix_ref(matrix **mat, matrix *from, int offset, int rows, int co
     // 6. Increment the `ref_cnt` field of the `from` struct by 1.
     // 7. Store the address of the allocated matrix struct at the location `mat` is pointing at.
     // 8. Return 0 upon success.
+    
+    if(rows <= 0 || cols <= 0){
+        return -1;
+    }
+    matrix *tmp = (matrix *)malloc(sizeof(matrix));
+    if(tmp == NULL){
+        return -2;
+    }
+    tmp->data = from->data + offset;
+    tmp->rows = rows;
+    tmp->cols = cols;
+    tmp->parent = from;
+    from->ref_cnt++;
+    *mat = tmp;
+    return 0;
+
 }
 
 /*
@@ -124,6 +201,14 @@ int allocate_matrix_ref(matrix **mat, matrix *from, int offset, int rows, int co
  */
 void fill_matrix(matrix *mat, double val) {
     // Task 1.5 TODO
+    if(mat == NULL){
+        printf("fill_matrix: mat points to NULL\n");
+        exit(-1);
+    }
+    for(int i = 0; i < mat->cols * mat->rows; i++){
+        mat->data[i] = val;
+    }
+    return;
 }
 
 /*
@@ -133,6 +218,10 @@ void fill_matrix(matrix *mat, double val) {
  */
 int abs_matrix(matrix *result, matrix *mat) {
     // Task 1.5 TODO
+    for(int i = 0; i < mat->rows*mat->cols;i++){
+        result->data[i] = (mat->data[i] < 0) ? -1 * mat->data[i] : mat->data[i]; 
+    }
+    return 0;
 }
 
 /*
@@ -153,6 +242,10 @@ int neg_matrix(matrix *result, matrix *mat) {
  */
 int add_matrix(matrix *result, matrix *mat1, matrix *mat2) {
     // Task 1.5 TODO
+    for(int i = 0; i < mat1->rows * mat1->cols; i++){
+        result->data[i] = mat1->data[i] + mat2->data[i];
+    }
+    return 0;
 }
 
 /*
@@ -164,6 +257,10 @@ int add_matrix(matrix *result, matrix *mat1, matrix *mat2) {
  */
 int sub_matrix(matrix *result, matrix *mat1, matrix *mat2) {
     // Task 1.5 TODO
+    for(int i = 0; i < mat1->rows * mat1->cols; i++){
+        result->data[i] = mat1->data[i] - mat2->data[i];
+    }
+    return 0;
 }
 
 /*
@@ -175,6 +272,24 @@ int sub_matrix(matrix *result, matrix *mat1, matrix *mat2) {
  */
 int mul_matrix(matrix *result, matrix *mat1, matrix *mat2) {
     // Task 1.6 TODO
+    double array[mat1->rows * mat2->cols];
+    double ans = 0;
+    for(int i = 0; i < mat1->rows; i++){
+        for(int k = 0; k < mat2->cols; k++){
+            for(int j = 0; j < mat1->cols; j++){
+                    //    printf("(i,j) x (j,k) -> (%d,%d) x (%d,%d)\n",i,j,j,k);
+                        ans += get(mat1,i,j) * get(mat2,j,k);
+                    }
+            
+    //        printf("set (%d,%d) to %f\n",i,k,ans);
+            array[i * mat2->cols + k ] = ans;
+            ans = 0;   
+        }
+    }
+    for(int i = 0; i < mat1->rows * mat2->cols; i++){
+        result->data[i] = array[i];
+    }
+    return 0;
 }
 
 /*
@@ -184,6 +299,59 @@ int mul_matrix(matrix *result, matrix *mat1, matrix *mat2) {
  * You may assume `mat` is a square matrix and `pow` is a non-negative integer.
  * Note that the matrix is in row-major order.
  */
+
+void print_mat(matrix *mat,int s){
+    
+    if(mat == NULL){
+        printf("\t mat points to NULL \n");
+        return;
+    }
+    printf("\n----- %d ------\n",s);
+    printf(" rows: %d, cols: %d \n",mat->rows,mat->cols);
+    for(int i = 0; i < mat->rows; i++){
+        for(int j = 0; j < mat->cols; j++){
+            printf("  %f ",mat->data[i * mat->cols + j]);
+        }
+        printf("\n");
+    }
+
+}
+void make_identity(matrix *mat){
+    for(int i = 0; i < mat->cols;i++){
+        for(int j = 0; j < mat->rows;j++){
+            if(i == j){
+                set(mat,i,j,1.0);
+            }else{
+                set(mat,i,j,0.0);
+            }
+        }
+    }
+}
+
+
 int pow_matrix(matrix *result, matrix *mat, int pow) {
     // Task 1.6 TODO
+    make_identity(result);
+//    print_mat(result,0);
+
+//            mul_matrix(result,result,mat);
+
+    for(int i = 0; i < pow; i++){
+        mul_matrix(result,result,mat);
+     //   print_mat(result,i);
+    }
+/*
+    while(pow){
+        if(pow % 2 == 1){
+            mul_matrix(result,result,mat);
+        }else{
+            mul_matrix(result,result,result);
+        }
+        pow = pow >> 1;
+        printf("--------  %d --------",pow);
+        print_mat(result,"while");
+
+    }
+*/
+    return 0;
 }
